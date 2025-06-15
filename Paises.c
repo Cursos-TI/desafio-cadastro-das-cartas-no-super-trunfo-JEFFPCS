@@ -1,18 +1,18 @@
 #include <stdio.h>
 #include <string.h>
 
-// Estrutura para representar uma cidade
+// Estrutura para armazenar dados de uma cidade
 struct Cidade {
     char nome[50];
 };
 
-// Estrutura para representar um estado
+// Estrutura para armazenar dados de um estado
 struct Estado {
     char nome[50];
     struct Cidade cidades[4]; // Assumindo 4 cidades por estado
 };
 
-// Estrutura para representar um país (a carta)
+// Estrutura para armazenar dados de um país (carta)
 struct Pais {
     char nome[50];
     struct Estado estados[4]; // Assumindo 4 estados por país
@@ -23,151 +23,101 @@ struct Pais {
 };
 
 int main() {
-    // Declaração das duas cartas (países)
-    struct Pais cartaBrasil;
-    struct Pais cartaPeru;
+    // --- Carta 1: Brasil ---
+    struct Pais brasil;
+    strcpy(brasil.nome, "Brasil");
+    brasil.populacao = 215000000;
+    brasil.area = 8515767.0;
+    brasil.pib = 1645000000000.0;
+    brasil.pontos_turisticos = 25000;
 
-    // --- Cadastro da carta do Brasil ---
-    strcpy(cartaBrasil.nome, "Brasil");
-    cartaBrasil.populacao = 215000000; // Exemplo de população
-    cartaBrasil.area = 8515767.0;     // Exemplo de área em km²
-    cartaBrasil.pib = 1600.0;         // Exemplo de PIB em bilhões de dólares
-    cartaBrasil.pontos_turisticos = 250; // Exemplo de número de pontos turísticos
+    // Estado: Rio de Janeiro
+    strcpy(brasil.estados[0].nome, "Rio de Janeiro");
+    strcpy(brasil.estados[0].cidades[0].nome, "Cidade do Rio");
+    strcpy(brasil.estados[0].cidades[1].nome, "Campo Grande");
+    strcpy(brasil.estados[0].cidades[2].nome, "Niterói");
+    strcpy(brasil.estados[0].cidades[3].nome, "Sao Goncalo");
 
-    // Estados do Brasil
-    // Rio de Janeiro
-    strcpy(cartaBrasil.estados[0].nome, "Rio de Janeiro");
-    strcpy(cartaBrasil.estados[0].cidades[0].nome, "Rio de Janeiro");
-    strcpy(cartaBrasil.estados[0].cidades[1].nome, "Campo Grande");
-    strcpy(cartaBrasil.estados[0].cidades[2].nome, "Niterói");
-    strcpy(cartaBrasil.estados[0].cidades[3].nome, "São Gonçalo");
+    // Estado: Sao Paulo
+    strcpy(brasil.estados[1].nome, "Sao Paulo");
+    strcpy(brasil.estados[1].cidades[0].nome, "Pinheiros");
+    strcpy(brasil.estados[1].cidades[1].nome, "Guarulhos");
+    strcpy(brasil.estados[1].cidades[2].nome, "Sao Jose dos Campos");
+    strcpy(brasil.estados[1].cidades[3].nome, "Santos");
 
-    // São Paulo
-    strcpy(cartaBrasil.estados[1].nome, "São Paulo");
-    strcpy(cartaBrasil.estados[1].cidades[0].nome, "Pinheiros");
-    strcpy(cartaBrasil.estados[1].cidades[1].nome, "Guarulhos");
-    strcpy(cartaBrasil.estados[1].cidades[2].nome, "São José dos Campos");
-    strcpy(cartaBrasil.estados[1].cidades[3].nome, "Santos");
+    // Estado: Minas Gerais
+    strcpy(brasil.estados[2].nome, "Minas Gerais");
+    strcpy(brasil.estados[2].cidades[0].nome, "Sao Lourenco");
+    strcpy(brasil.estados[2].cidades[1].nome, "Belo Horizonte");
+    strcpy(brasil.estados[2].cidades[2].nome, "Contagem");
+    strcpy(brasil.estados[2].cidades[3].nome, "Betim");
 
-    // Minas Gerais
-    strcpy(cartaBrasil.estados[2].nome, "Minas Gerais");
-    strcpy(cartaBrasil.estados[2].cidades[0].nome, "São Lourenço");
-    strcpy(cartaBrasil.estados[2].cidades[1].nome, "Belo Horizonte");
-    strcpy(cartaBrasil.estados[2].cidades[2].nome, "Contagem");
-    strcpy(cartaBrasil.estados[2].cidades[3].nome, "Betim");
+    // Estado: Bahia
+    strcpy(brasil.estados[3].nome, "Bahia");
+    strcpy(brasil.estados[3].cidades[0].nome, "Salvador");
+    strcpy(brasil.estados[3].cidades[1].nome, "Ilheus");
+    strcpy(brasil.estados[3].cidades[2].nome, "Jequie");
+    strcpy(brasil.estados[3].cidades[3].nome, "Feira de Santana");
 
-    // Bahia
-    strcpy(cartaBrasil.estados[3].nome, "Bahia");
-    strcpy(cartaBrasil.estados[3].cidades[0].nome, "Salvador");
-    strcpy(cartaBrasil.estados[3].cidades[1].nome, "Ilhéus");
-    strcpy(cartaBrasil.estados[3].cidades[2].nome, "Jequié");
-    strcpy(cartaBrasil.estados[3].cidades[3].nome, "Feira de Santana");
+    // --- Carta 2: Peru ---
+    struct Pais peru;
+    strcpy(peru.nome, "Peru");
+    peru.populacao = 33000000;
+    peru.area = 1285216.0;
+    peru.pib = 227000000000.0;
+    peru.pontos_turisticos = 12000;
 
-    // --- Cadastro da carta do Peru ---
-    strcpy(cartaPeru.nome, "Peru");
-    cartaPeru.populacao = 33000000; // Exemplo de população
-    cartaPeru.area = 1285216.0;      // Exemplo de área em km²
-    cartaPeru.pib = 220.0;          // Exemplo de PIB em bilhões de dólares
-    cartaPeru.pontos_turisticos = 120; // Exemplo de número de pontos turísticos
+    // Estado: Lima
+    strcpy(peru.estados[0].nome, "Lima");
+    strcpy(peru.estados[0].cidades[0].nome, "Ancon");
+    strcpy(peru.estados[0].cidades[1].nome, "Comas");
+    strcpy(peru.estados[0].cidades[2].nome, "Barranco");
+    strcpy(peru.estados[0].cidades[3].nome, "Jesus Maria");
 
-    // Estados do Peru
-    // Lima
-    strcpy(cartaPeru.estados[0].nome, "Lima");
-    strcpy(cartaPeru.estados[0].cidades[0].nome, "Lima (cidade)");
-    strcpy(cartaPeru.estados[0].cidades[1].nome, "Miraflores");
-    strcpy(cartaPeru.estados[0].cidades[2].nome, "San Isidro");
-    strcpy(cartaPeru.estados[0].cidades[3].nome, "Barranco");
+    // Estado: Arequipa
+    strcpy(peru.estados[1].nome, "Arequipa");
+    strcpy(peru.estados[1].cidades[0].nome, "Arequipa");
+    strcpy(peru.estados[1].cidades[1].nome, "La Joya");
+    strcpy(peru.estados[1].cidades[2].nome, "Vitor");
+    strcpy(peru.estados[1].cidades[3].nome, "Cerro Colorado");
 
-    // Arequipa
-    strcpy(cartaPeru.estados[1].nome, "Arequipa");
-    strcpy(cartaPeru.estados[1].cidades[0].nome, "Arequipa (cidade)");
-    strcpy(cartaPeru.estados[1].cidades[1].nome, "Yanahuara");
-    strcpy(cartaPeru.estados[1].cidades[2].nome, "Cayma");
-    strcpy(cartaPeru.estados[1].cidades[3].nome, "Sachaca");
+    // Estado: Cusco
+    strcpy(peru.estados[2].nome, "Cusco");
+    strcpy(peru.estados[2].cidades[0].nome, "Poroy");
+    strcpy(peru.estados[2].cidades[1].nome, "San Jeronimo");
+    strcpy(peru.estados[2].cidades[2].nome, "Santiago");
+    strcpy(peru.estados[2].cidades[3].nome, "Cusco");
 
-    // Cusco
-    strcpy(cartaPeru.estados[2].nome, "Cusco");
-    strcpy(cartaPeru.estados[2].cidades[0].nome, "Cusco (cidade)");
-    strcpy(cartaPeru.estados[2].cidades[1].nome, "Machu Picchu");
-    strcpy(cartaPeru.estados[2].cidades[2].nome, "Ollantaytambo");
-    strcpy(cartaPeru.estados[2].cidades[3].nome, "Pisac");
+    // Estado: Puno
+    strcpy(peru.estados[3].nome, "Puno");
+    strcpy(peru.estados[3].cidades[0].nome, "Acora");
+    strcpy(peru.estados[3].cidades[1].nome, "Coata");
+    strcpy(peru.estados[3].cidades[2].nome, "San Antonio");
+    strcpy(peru.estados[3].cidades[3].nome, "Puno");
 
-    // Puno
-    strcpy(cartaPeru.estados[3].nome, "Puno");
-    strcpy(cartaPeru.estados[3].cidades[0].nome, "Puno (cidade)");
-    strcpy(cartaPeru.estados[3].cidades[1].nome, "Juliaca");
-    strcpy(cartaPeru.estados[3].cidades[2].nome, "Desaguadero");
-    strcpy(cartaPeru.estados[3].cidades[3].nome, "Chucuito");
+    // Exibição dos dados (apenas para verificação)
+    printf("--- Carta: %s ---\n", brasil.nome);
+    printf("Populacao: %d\n", brasil.populacao);
+    printf("Area: %.2f km2\n", brasil.area);
+    printf("PIB: %.2f USD\n", brasil.pib);
+    printf("Pontos Turisticos: %d\n", brasil.pontos_turisticos);
+    printf("Estados:\n");
+    printf("  - %s: %s, %s, %s, %s\n", brasil.estados[0].nome, brasil.estados[0].cidades[0].nome, brasil.estados[0].cidades[1].nome, brasil.estados[0].cidades[2].nome, brasil.estados[0].cidades[3].nome);
+    printf("  - %s: %s, %s, %s, %s\n", brasil.estados[1].nome, brasil.estados[1].cidades[0].nome, brasil.estados[1].cidades[1].nome, brasil.estados[1].cidades[2].nome, brasil.estados[1].cidades[3].nome);
+    printf("  - %s: %s, %s, %s, %s\n", brasil.estados[2].nome, brasil.estados[2].cidades[0].nome, brasil.estados[2].cidades[1].nome, brasil.estados[2].cidades[2].nome, brasil.estados[2].cidades[3].nome);
+    printf("  - %s: %s, %s, %s, %s\n", brasil.estados[3].nome, brasil.estados[3].cidades[0].nome, brasil.estados[3].cidades[1].nome, brasil.estados[3].cidades[2].nome, brasil.estados[3].cidades[3].nome);
 
-    // --- Exibição dos dados ---
-
-    printf("--- Carta: %s ---\n", cartaBrasil.nome);
-    printf("População: %d\n", cartaBrasil.populacao);
-    printf("Área: %.2f km²\n", cartaBrasil.area);
-    printf("PIB: %.2f bilhões\n", cartaBrasil.pib);
-    printf("Pontos Turísticos: %d\n", cartaBrasil.pontos_turisticos);
-
-    printf("  Estado: %s\n", cartaBrasil.estados[0].nome);
-    printf("    Cidades: %s, %s, %s, %s\n",
-           cartaBrasil.estados[0].cidades[0].nome,
-           cartaBrasil.estados[0].cidades[1].nome,
-           cartaBrasil.estados[0].cidades[2].nome,
-           cartaBrasil.estados[0].cidades[3].nome);
-
-    printf("  Estado: %s\n", cartaBrasil.estados[1].nome);
-    printf("    Cidades: %s, %s, %s, %s\n",
-           cartaBrasil.estados[1].cidades[0].nome,
-           cartaBrasil.estados[1].cidades[1].nome,
-           cartaBrasil.estados[1].cidades[2].nome,
-           cartaBrasil.estados[1].cidades[3].nome);
-
-    printf("  Estado: %s\n", cartaBrasil.estados[2].nome);
-    printf("    Cidades: %s, %s, %s, %s\n",
-           cartaBrasil.estados[2].cidades[0].nome,
-           cartaBrasil.estados[2].cidades[1].nome,
-           cartaBrasil.estados[2].cidades[2].nome,
-           cartaBrasil.estados[2].cidades[3].nome);
-
-    printf("  Estado: %s\n", cartaBrasil.estados[3].nome);
-    printf("    Cidades: %s, %s, %s, %s\n",
-           cartaBrasil.estados[3].cidades[0].nome,
-           cartaBrasil.estados[3].cidades[1].nome,
-           cartaBrasil.estados[3].cidades[2].nome,
-           cartaBrasil.estados[3].cidades[3].nome);
-
-    printf("\n--- Carta: %s ---\n", cartaPeru.nome);
-    printf("População: %d\n", cartaPeru.populacao);
-    printf("Área: %.2f km²\n", cartaPeru.area);
-    printf("PIB: %.2f bilhões\n", cartaPeru.pib);
-    printf("Pontos Turísticos: %d\n", cartaPeru.pontos_turisticos);
-
-    printf("  Estado: %s\n", cartaPeru.estados[0].nome);
-    printf("    Cidades: %s, %s, %s, %s\n",
-           cartaPeru.estados[0].cidades[0].nome,
-           cartaPeru.estados[0].cidades[1].nome,
-           cartaPeru.estados[0].cidades[2].nome,
-           cartaPeru.estados[0].cidades[3].nome);
-
-    printf("  Estado: %s\n", cartaPeru.estados[1].nome);
-    printf("    Cidades: %s, %s, %s, %s\n",
-           cartaPeru.estados[1].cidades[0].nome,
-           cartaPeru.estados[1].cidades[1].nome,
-           cartaPeru.estados[1].cidades[2].nome,
-           cartaPeru.estados[1].cidades[3].nome);
-
-    printf("  Estado: %s\n", cartaPeru.estados[2].nome);
-    printf("    Cidades: %s, %s, %s, %s\n",
-           cartaPeru.estados[2].cidades[0].nome,
-           cartaPeru.estados[2].cidades[1].nome,
-           cartaPeru.estados[2].cidades[2].nome,
-           cartaPeru.estados[2].cidades[3].nome);
-
-    printf("  Estado: %s\n", cartaPeru.estados[3].nome);
-    printf("    Cidades: %s, %s, %s, %s\n",
-           cartaPeru.estados[3].cidades[0].nome,
-           cartaPeru.estados[3].cidades[1].nome,
-           cartaPeru.estados[3].cidades[2].nome,
-           cartaPeru.estados[3].cidades[3].nome);
+    printf("\n--- Carta: %s ---\n", peru.nome);
+    printf("Populacao: %d\n", peru.populacao);
+    printf("Area: %.2f km2\n", peru.area);
+    printf("PIB: %.2f USD\n", peru.pib);
+    printf("Pontos Turisticos: %d\n", peru.pontos_turisticos);
+    printf("Estados:\n");
+    printf("  - %s: %s, %s, %s, %s\n", peru.estados[0].nome, peru.estados[0].cidades[0].nome, peru.estados[0].cidades[1].nome, peru.estados[0].cidades[2].nome, peru.estados[0].cidades[3].nome);
+    printf("  - %s: %s, %s, %s, %s\n", peru.estados[1].nome, peru.estados[1].cidades[0].nome, peru.estados[1].cidades[1].nome, peru.estados[1].cidades[2].nome, peru.estados[1].cidades[3].nome);
+    printf("  - %s: %s, %s, %s, %s\n", peru.estados[2].nome, peru.estados[2].cidades[0].nome, peru.estados[2].cidades[1].nome, peru.estados[2].cidades[2].nome, peru.estados[2].cidades[3].nome);
+    printf("  - %s: %s, %s, %s, %s\n", peru.estados[3].nome, peru.estados[3].cidades[0].nome, peru.estados[3].cidades[1].nome, peru.estados[3].cidades[2].nome, peru.estados[3].cidades[3].nome);
 
     return 0;
 }
+
