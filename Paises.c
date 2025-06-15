@@ -99,7 +99,7 @@ int main() {
     strcpy(cartaPeru.estados[3].cidades[2].nome, "Desaguadero");
     strcpy(cartaPeru.estados[3].cidades[3].nome, "Chucuito");
 
-    // --- Exibição dos dados (apenas para verificação, sem laços) ---
+    // --- Exibição dos dados ---
 
     printf("--- Carta: %s ---\n", cartaBrasil.nome);
     printf("População: %d\n", cartaBrasil.populacao);
