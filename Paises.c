@@ -1,87 +1,173 @@
 #include <stdio.h>
-#include <string.h> // Para usar strcpy
+#include <string.h>
 
-// Estrutura para representar um Estado
-typedef struct {
+// Estrutura para representar uma cidade
+struct Cidade {
     char nome[50];
+};
+
+// Estrutura para representar um estado
+struct Estado {
+    char nome[50];
+    struct Cidade cidades[4]; // Assumindo 4 cidades por estado
+};
+
+// Estrutura para representar um país (a carta)
+struct Pais {
+    char nome[50];
+    struct Estado estados[4]; // Assumindo 4 estados por país
     int populacao;
     float area;
     float pib;
-    int numPontosTuristicos;
-} Estado;
-
-// Estrutura para representar um País
-typedef struct {
-    char nome[50];
-    Estado estados[4];
-    int numEstados;
-} Pais;
+    int pontos_turisticos;
+};
 
 int main() {
-    Pais brasil;
-    Pais peru;
+    // Declaração das duas cartas (países)
+    struct Pais cartaBrasil;
+    struct Pais cartaPeru;
 
     // --- Cadastro da carta do Brasil ---
-
-    // Nome do país
-    strcpy(brasil.nome, "Brasil");
-    brasil.numEstados = 4;
+    strcpy(cartaBrasil.nome, "Brasil");
+    cartaBrasil.populacao = 215000000; // Exemplo de população
+    cartaBrasil.area = 8515767.0;     // Exemplo de área em km²
+    cartaBrasil.pib = 1600.0;         // Exemplo de PIB em bilhões de dólares
+    cartaBrasil.pontos_turisticos = 250; // Exemplo de número de pontos turísticos
 
     // Estados do Brasil
-    strcpy(brasil.estados[0].nome, "Rio de Janeiro");
-    brasil.estados[0].populacao = 17000000; // Exemplo de população
-    brasil.estados[0].area = 43280.0;       // Exemplo de área (km²)
-    brasil.estados[0].pib = 700.5;          // Exemplo de PIB (bilhões)
-    brasil.estados[0].numPontosTuristicos = 20; // Exemplo de pontos turísticos
+    // Rio de Janeiro
+    strcpy(cartaBrasil.estados[0].nome, "Rio de Janeiro");
+    strcpy(cartaBrasil.estados[0].cidades[0].nome, "Rio de Janeiro");
+    strcpy(cartaBrasil.estados[0].cidades[1].nome, "Campo Grande");
+    strcpy(cartaBrasil.estados[0].cidades[2].nome, "Niterói");
+    strcpy(cartaBrasil.estados[0].cidades[3].nome, "São Gonçalo");
 
-    strcpy(brasil.estados[1].nome, "Sao Paulo");
-    brasil.estados[1].populacao = 46000000;
-    brasil.estados[1].area = 248222.0;
-    brasil.estados[1].pib = 2300.0;
-    brasil.estados[1].numPontosTuristicos = 30;
+    // São Paulo
+    strcpy(cartaBrasil.estados[1].nome, "São Paulo");
+    strcpy(cartaBrasil.estados[1].cidades[0].nome, "Pinheiros");
+    strcpy(cartaBrasil.estados[1].cidades[1].nome, "Guarulhos");
+    strcpy(cartaBrasil.estados[1].cidades[2].nome, "São José dos Campos");
+    strcpy(cartaBrasil.estados[1].cidades[3].nome, "Santos");
 
-    strcpy(brasil.estados[2].nome, "Minas Gerais");
-    brasil.estados[2].populacao = 21000000;
-    brasil.estados[2].area = 586522.0;
-    brasil.estados[2].pib = 600.0;
-    brasil.estados[2].numPontosTuristicos = 25;
+    // Minas Gerais
+    strcpy(cartaBrasil.estados[2].nome, "Minas Gerais");
+    strcpy(cartaBrasil.estados[2].cidades[0].nome, "São Lourenço");
+    strcpy(cartaBrasil.estados[2].cidades[1].nome, "Belo Horizonte");
+    strcpy(cartaBrasil.estados[2].cidades[2].nome, "Contagem");
+    strcpy(cartaBrasil.estados[2].cidades[3].nome, "Betim");
 
-    strcpy(brasil.estados[3].nome, "Bahia");
-    brasil.estados[3].populacao = 15000000;
-    brasil.estados[3].area = 564733.0;
-    brasil.estados[3].pib = 350.0;
-    brasil.estados[3].numPontosTuristicos = 18;
+    // Bahia
+    strcpy(cartaBrasil.estados[3].nome, "Bahia");
+    strcpy(cartaBrasil.estados[3].cidades[0].nome, "Salvador");
+    strcpy(cartaBrasil.estados[3].cidades[1].nome, "Ilhéus");
+    strcpy(cartaBrasil.estados[3].cidades[2].nome, "Jequié");
+    strcpy(cartaBrasil.estados[3].cidades[3].nome, "Feira de Santana");
 
     // --- Cadastro da carta do Peru ---
-
-    // Nome do país
-    strcpy(peru.nome, "Peru");
-    peru.numEstados = 4; 
+    strcpy(cartaPeru.nome, "Peru");
+    cartaPeru.populacao = 33000000; // Exemplo de população
+    cartaPeru.area = 1285216.0;      // Exemplo de área em km²
+    cartaPeru.pib = 220.0;          // Exemplo de PIB em bilhões de dólares
+    cartaPeru.pontos_turisticos = 120; // Exemplo de número de pontos turísticos
 
     // Estados do Peru
-    strcpy(peru.estados[0].nome, "Lima");
-    peru.estados[0].populacao = 10000000;
-    peru.estados[0].area = 2670.0;
-    peru.estados[0].pib = 150.0;
-    peru.estados[0].numPontosTuristicos = 10;
+    // Lima
+    strcpy(cartaPeru.estados[0].nome, "Lima");
+    strcpy(cartaPeru.estados[0].cidades[0].nome, "Lima (cidade)");
+    strcpy(cartaPeru.estados[0].cidades[1].nome, "Miraflores");
+    strcpy(cartaPeru.estados[0].cidades[2].nome, "San Isidro");
+    strcpy(cartaPeru.estados[0].cidades[3].nome, "Barranco");
 
-    strcpy(peru.estados[1].nome, "Arequipa");
-    peru.estados[1].populacao = 1500000;
-    peru.estados[1].area = 63345.0;
-    peru.estados[1].pib = 30.0;
-    peru.estados[1].numPontosTuristicos = 8;
-    
-    strcpy(peru.estados[2].nome, "Cusco");
-    peru.estados[2].populacao = 1300000;
-    peru.estados[2].area = 71986.0;
-    peru.estados[2].pib = 25.0;
-    peru.estados[2].numPontosTuristicos = 15;
+    // Arequipa
+    strcpy(cartaPeru.estados[1].nome, "Arequipa");
+    strcpy(cartaPeru.estados[1].cidades[0].nome, "Arequipa (cidade)");
+    strcpy(cartaPeru.estados[1].cidades[1].nome, "Yanahuara");
+    strcpy(cartaPeru.estados[1].cidades[2].nome, "Cayma");
+    strcpy(cartaPeru.estados[1].cidades[3].nome, "Sachaca");
 
-    strcpy(peru.estados[3].nome, "Puno");
-    peru.estados[3].populacao = 1200000;
-    peru.estados[3].area = 66997.0;
-    peru.estados[3].pib = 20.0;
-    peru.estados[3].numPontosTuristicos = 7;
+    // Cusco
+    strcpy(cartaPeru.estados[2].nome, "Cusco");
+    strcpy(cartaPeru.estados[2].cidades[0].nome, "Cusco (cidade)");
+    strcpy(cartaPeru.estados[2].cidades[1].nome, "Machu Picchu");
+    strcpy(cartaPeru.estados[2].cidades[2].nome, "Ollantaytambo");
+    strcpy(cartaPeru.estados[2].cidades[3].nome, "Pisac");
+
+    // Puno
+    strcpy(cartaPeru.estados[3].nome, "Puno");
+    strcpy(cartaPeru.estados[3].cidades[0].nome, "Puno (cidade)");
+    strcpy(cartaPeru.estados[3].cidades[1].nome, "Juliaca");
+    strcpy(cartaPeru.estados[3].cidades[2].nome, "Desaguadero");
+    strcpy(cartaPeru.estados[3].cidades[3].nome, "Chucuito");
+
+    // --- Exibição dos dados (apenas para verificação, sem laços) ---
+
+    printf("--- Carta: %s ---\n", cartaBrasil.nome);
+    printf("População: %d\n", cartaBrasil.populacao);
+    printf("Área: %.2f km²\n", cartaBrasil.area);
+    printf("PIB: %.2f bilhões\n", cartaBrasil.pib);
+    printf("Pontos Turísticos: %d\n", cartaBrasil.pontos_turisticos);
+
+    printf("  Estado: %s\n", cartaBrasil.estados[0].nome);
+    printf("    Cidades: %s, %s, %s, %s\n",
+           cartaBrasil.estados[0].cidades[0].nome,
+           cartaBrasil.estados[0].cidades[1].nome,
+           cartaBrasil.estados[0].cidades[2].nome,
+           cartaBrasil.estados[0].cidades[3].nome);
+
+    printf("  Estado: %s\n", cartaBrasil.estados[1].nome);
+    printf("    Cidades: %s, %s, %s, %s\n",
+           cartaBrasil.estados[1].cidades[0].nome,
+           cartaBrasil.estados[1].cidades[1].nome,
+           cartaBrasil.estados[1].cidades[2].nome,
+           cartaBrasil.estados[1].cidades[3].nome);
+
+    printf("  Estado: %s\n", cartaBrasil.estados[2].nome);
+    printf("    Cidades: %s, %s, %s, %s\n",
+           cartaBrasil.estados[2].cidades[0].nome,
+           cartaBrasil.estados[2].cidades[1].nome,
+           cartaBrasil.estados[2].cidades[2].nome,
+           cartaBrasil.estados[2].cidades[3].nome);
+
+    printf("  Estado: %s\n", cartaBrasil.estados[3].nome);
+    printf("    Cidades: %s, %s, %s, %s\n",
+           cartaBrasil.estados[3].cidades[0].nome,
+           cartaBrasil.estados[3].cidades[1].nome,
+           cartaBrasil.estados[3].cidades[2].nome,
+           cartaBrasil.estados[3].cidades[3].nome);
+
+    printf("\n--- Carta: %s ---\n", cartaPeru.nome);
+    printf("População: %d\n", cartaPeru.populacao);
+    printf("Área: %.2f km²\n", cartaPeru.area);
+    printf("PIB: %.2f bilhões\n", cartaPeru.pib);
+    printf("Pontos Turísticos: %d\n", cartaPeru.pontos_turisticos);
+
+    printf("  Estado: %s\n", cartaPeru.estados[0].nome);
+    printf("    Cidades: %s, %s, %s, %s\n",
+           cartaPeru.estados[0].cidades[0].nome,
+           cartaPeru.estados[0].cidades[1].nome,
+           cartaPeru.estados[0].cidades[2].nome,
+           cartaPeru.estados[0].cidades[3].nome);
+
+    printf("  Estado: %s\n", cartaPeru.estados[1].nome);
+    printf("    Cidades: %s, %s, %s, %s\n",
+           cartaPeru.estados[1].cidades[0].nome,
+           cartaPeru.estados[1].cidades[1].nome,
+           cartaPeru.estados[1].cidades[2].nome,
+           cartaPeru.estados[1].cidades[3].nome);
+
+    printf("  Estado: %s\n", cartaPeru.estados[2].nome);
+    printf("    Cidades: %s, %s, %s, %s\n",
+           cartaPeru.estados[2].cidades[0].nome,
+           cartaPeru.estados[2].cidades[1].nome,
+           cartaPeru.estados[2].cidades[2].nome,
+           cartaPeru.estados[2].cidades[3].nome);
+
+    printf("  Estado: %s\n", cartaPeru.estados[3].nome);
+    printf("    Cidades: %s, %s, %s, %s\n",
+           cartaPeru.estados[3].cidades[0].nome,
+           cartaPeru.estados[3].cidades[1].nome,
+           cartaPeru.estados[3].cidades[2].nome,
+           cartaPeru.estados[3].cidades[3].nome);
 
     return 0;
 }
